@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@0,400;0,500;&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-text-color: #183b56;
+    --secondary-text-color: #577592;
+    --accent-color: #2294ed;
+    --accent-color-dark: #1d69a3;
+    --padding-inline-section: 10px;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    padding: 0 7%;
+    margin-top: 15vh;
+}
+
+
+
+/* Navbar start */
+
+header{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 80px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.3s;
+}
+
+.logo img{
+    width: 200px;
+}
+
+header .menu{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+header .menu a{
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 0 30px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    transition: 0.3s ease-out;
+    font-weight: 500;
+}
+
+header .menu a:hover{
+    color: var(--accent-color-dark);
+}
+
+header .btn{
+    color: #222;
+    font-size: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+header.sticky{
+    background: #222;
+    padding: 10px 80px;
+    
+}
+
+header.sticky a{
+    color: white;
+}
+
+header.sticky a.logo img {
+    
+    background-color: white;
+    border-radius: 10px;
+}
+
+header.sticky a.secondary-btn{
+    color: white;
+    border-color: white;
+    transition: 0.3s ease-out;
+}
+
+header.sticky a.secondary-btn:hover{
+    color: rgb(178, 210, 219);
+    border-color: rgb(178, 210, 219);
+}
+
+header.sticky .menu-btn{
+    color: white;
+    
+}
+
+/*Navbar end*/
+
+/*Buttons start*/
+.primary-btn{
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    font-weight: 600;
+    color: white !important;
+    padding: 12px 24px !important;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.4s ease-out;
+}
+
+.primary-btn:hover{
+    background-color:  #195b8d !important;
+}
+
+.secondary-btn{
+    border:  0.5px solid var(--secondary-text-color);
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--primary-text-color) ;
+    padding: 12px 24px !important;
+    transition: 0.4s ease-out;
+}
+
+.secondary-btn:hover{
+    border-color: var(--accent-color);
+    color: var(--secondary-text-color);
+}
+
+/* Navbar - end */
+
+/* Header section */
+
+.image-container{
+    position: relative;
+    height: 78vh;
+    width: 100%;
+}
+
+.image-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    z-index: 1;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.gradient{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.5) 70%);
+    pointer-events: none; /* Ensures the overlay doesn't interfere with clicking on the image */
+    border-radius: 15px;
+}
+
+.overlay-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.overlay-text{
+    position: absolute;
+    top:10%;
+    left: 5%;
+    color: white;
+    font-size: 2.5rem;  
+    margin: 0;
+    padding: 2px 3px;
+    box-sizing: border-box;
+}
+
+.overlay-text-para{
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    color: white;
+    font-size: 1rem;
+    margin: 0;
+    padding: 2px 3px;
+    box-sizing: border-box;
+}
+
+.overlay-btn{
+    position: absolute;
+    top: 75%;
+    width: 100%;
+    justify-content: center;
+    gap: 20vw;
+    display: flex;
+    text-transform: uppercase;
+}
+
+.btn1{
+    color: white !important;
+    text-decoration: none;
+    border: 1px solid white !important;
+    padding: 15px 30px !important;
+}
+
+.btn2{
+    color: white !important;
+    text-decoration: none;
+    border: 1px solid white !important;
+    padding: 15px 30px !important;
+}
+
+.overlay-btn a:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5) !important ;
+}
+/*Flight booking Section*/
+.container .text-section h1{
+    margin: 25px 5px;
+    font-size: 3.2rem;
+    color: var(--primary-text-color);
+    
+}
+
+.container .text-section {
+    margin:25px 15px;
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    
+}
+
+.gradient-2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 80%);
+    pointer-events: none; /* Ensures the overlay doesn't interfere with clicking on the image */
+    border-radius: 15px;
+}
+
+
+
+.form-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    
+}
+
+form {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: #183b56;
+}
+
+form input {
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    background:  rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.form-row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px 10px;
+    gap: 40px;
+}
+
+.form-row .primary-btn{
+    border: none !important;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+
+
+/*Flight booking End*/
+
+.sub-footer{
+    margin-top: 10vh;
+    background-color: #b9cdef;
+    padding: var(--padding-inline-section);
+    color: var(--primary-text-color);
+}
+
+
+.subfooter-container{
+    justify-content: center;
+    gap:30px;
+}
+
+.subfooter-container a{
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: 0.4s ease-out;
+}
+
+.subfooter-container a:hover{
+    color: var(--accent-color-dark);
+    text-decoration: none;
+}
+/* Date section */
+#Departuredate,#Returndate,#Checkin,#Checkout{
+    width:180px;
+}
+
+
+/*Media section - Responsive */
+@media (max-width: 1060px){
+    header .btn{
+        display: block;
+        color: #222;
+        
+    }
+
+    header .menu{
+        position: fixed;
+        background: white;
+        flex-direction: column;
+        min-width: 400px;
+        height: 100vh;
+        top: 0;
+        right: -100%;
+        padding: 80px 50px;
+        transition: 0.5s ease-out;
+    }
+    
+
+    header .menu.active{
+        right: 0;
+    }
+
+    header .menu .close-btn{
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 25px;
+    }
+
+    header .menu a{
+        display: block;
+        color: var(--primary-text-color) ;
+        font-size: 20px;
+        margin: 20px;
+        padding: 0 15px;
+    }
+
+    header .menu a.secondary-btn{
+        color: var(--primary-text-color) !important;
+        border-color: var(--primary-text-color);
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .overlay-text{
+        font-size: 1.7rem;
+    }
+
+    .overlay-text-para{
+        font-size: 0.9rem;
+    }
+
+    .overlay-btn{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 7vh;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hover-links{
+        font-size: 0.5rem;
+    }
+}

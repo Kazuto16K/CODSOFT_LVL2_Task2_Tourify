@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static "css/details.css" %}">
+    <title>Flight Detail</title>
+</head>
+<body>
+    <header style="box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+        <a href="#" class="logo">
+            <img id="logoimg" src="{% static "assets/tourify-logo.png" %}" alt="">
+        </a>
+        <div class="menu">
+            <div class="btn">
+                <i class="fa fa-times close-btn"></i>
+            </div>
+            
+
+            <a href="{% url 'home' %}">Home</a>
+            <a href="#">Hotels</a>
+            <a href="#">Flights</a>
+            <a href="{% url 'logout' %}" class="primary-btn">LOGOUT <i class="fa-solid fa-right-to-bracket"></i></a>
+            <a href="{% url 'get_profile' user %}" class="secondary-btn"><i class="fa-regular fa-user"></i> Profile</a>
+
+        </div>
+        <div class="btn">
+            <i class="fa-solid fa-bars menu-btn" ></i>
+        </div>
+    </header>
+
+    <div class="container" style="margin-top: 15vh;">
+ 
+        <div class="gallery ">
+         <div class="box" id="box-1" style="background-image: url({% static "./assets/flight_int2.jpg" %});"></div>
+         <div class="box" id="box-2" style="background-image: url({% static "./assets/flight_int3.jpg" %});"></div>
+         <div class="box" id="box-3" style="background-image: url({% static "./assets/flight_int4.jpg" %});"></div>
+        </div>
+     </div>
+
+     <div class="details-container">
+        <div class="details-section">
+            <h2>{% if offer.flight_company is None %}
+                {{ offer.carrierCode }} - {{ offer.departure_loc }}
+                {% else %}
+                {{ offer.flight_company }}
+                {% endif %}</h2>
+            <p><b>Available Seats</b> : {{ offer.available_seats }}</p>
+            <p><b>Departure Date</b> : {{ offer.departure_time|slice:"0:10" }}</p>
+            <p><b>Flight Duration</b> : {{ offer.total_duration|slice:"2:" }}</p>
+            {% if offer.flight_type == "Direct" %}
+            <p><b>Depature</b> : {{ offer.departure_loc }} - {{ offer.departure_time|slice:"11:16" }}    <b>Arrival</b> : {{ offer.arrival_loc }} - {{ offer.arrival_time|slice:"11:16" }}</p>
+            {% elif offer.flight_type == "Hopping" %} 
+            <p><b>Depature</b> : {{ offer.departure_loc }} - {{ offer.departure_time|slice:"11:16" }}      &emsp;    <b>Hopping Arrival</b> : {{ offer.hopping_loc }} - {{ offer.hopping_at|slice:"11:16" }} &emsp;   <b>Hop 1 Duration</b> : {{ offer.hop_1_duration|slice:"2:" }} </p>
+            <p><b>Hopping Depature</b> : {{ offer.hopping_loc }} - {{ offer.hopping_dt|slice:"11:16" }}    &emsp;    <b>Arrival</b> : {{ offer.arrival_loc }} - {{ offer.arrival_time|slice:"11:16" }}  &emsp; <b>Hop 2 Duration</b> : {{ offer.hop_2_duration|slice:"2:" }} </p>
+            {% endif %}
+            <p></p>
+            <p><b>Cabin Class</b> : {{ offer.cabin_type }}</p>
+            <p><b>Checked Baggage Weight</b> : {{ offer.checked_baggage_weight }} KG/person</p>
+
+            {% if offer.meal_services is None %}
+            <p><b>Meal Services</b> : Not Available</p>
+            {% else %}
+            <p><b>Meal Services</b> : Available</p>
+            {% endif %}
+            <p><b>Type</b> : 1 Way</p>
+        </div>
+        <div class="price-section">
+            <h2>Total Amount</h2>
+            <div style="margin-top: auto;">
+            <p>Price / Adult : {{ offer.price_per_person }} {{ offer.price_currency }}</p> <!-- get from price.variation.average.base  -->
+            <p>No of Adults : {{ offer.no_of_adults }} </p> 
+            <p>Total Price: {{ offer.price_total }} {{ offer.price_currency }}</p>    <!-- get from price.base  -->
+            <form action="{% url 'confirm_booking' %}" method="post" style="display:flex; flex-direction: column; align-items:left">
+                {% csrf_token %}
+                <input type="text" style="display: none;" value="{{ offer.username }}" id="user_name" name="user_name">
+                <input type="text" style="display: none;" value="{{ offer.price_total }}" id="flight-price" name="flight-price">
+                <input type="text" style="display: none;" value="{{ offer.carrierCode }}" id="flight-carrierCode" name="flight-carrierCode">
+                <input type="text" style="display: none;" value="{{ offer.no_of_adults }}" id="flight-no-adults" name="flight-no-adults">
+                <input type="text" style="display: none;" value="{{ offer.departure_loc }}" id="flight-dep-loc" name="flight-dep-loc">
+                <input type="text" style="display: none;" value="{{ offer.departure_time }}" id="flight-dep-time" name="flight-dep-at">
+                <input type="text" style="display: none;" value="{{ offer.arrival_loc }}" id="flight-arrival-loc" name="flight-arrival-loc">
+                <input type="text" style="display: none;" value="{{ offer.arrival_time }}" id="flight-arrival-time" name="flight-arrival-at">
+                <input type="text" style="display: none;" value="{{ offer.flight_id }}" id="flight-id" name="flight-id">
+                <input type="text" style="display: none;" value="{{ offer.price_currency }}" id="currency" name="currency">
+
+
+                {% for i in range_of_adults %}
+                <label><p>Enter Name {{ forloop.counter }} :</p></label>
+                <input type="text" placeholder="Enter Name" id="name{{ forloop.counter }}" name="name{{ forloop.counter }}">
+                {% endfor %}
+                <input type="submit" value="Confirm Booking" class="primary-btn" name="flight-submit">
+            </form>
+            </div>
+        </div>
+     </div>
+    
+
+    <script>
+        window.addEventListener("scroll", function(){
+            var header = document.querySelector("header");
+            header.classList.toggle('sticky', window.scrollY>0)
+        });
+
+        var menu = document.querySelector('.menu');
+        var menuBtn = document.querySelector('.menu-btn');
+        var closeBtn = document.querySelector('.close-btn');
+
+        menuBtn.addEventListener("click",()=>{
+            menu.classList.add('active');
+        });
+
+        closeBtn.addEventListener("click", ()=>{
+            menu.classList.remove('active');
+        });
+    </script>
+    
+</body>
+</html>

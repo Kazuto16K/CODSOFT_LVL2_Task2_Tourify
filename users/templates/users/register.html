@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Signup</title>
+</head>
+<body>
+    <div class="container flex" style="flex-direction: row-reverse;">
+        <div class="img-box">
+            <img src="{% static 'images/hotel3.jpg' %}" alt="">
+        </div>
+
+        <div class="form-box">
+            <div class="register-form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h2>Sign Up</h2>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+                        {{ form.username }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+                        {{ form.email }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }}</label>
+                        {{ form.password }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.password2.id_for_label }}" class="form-label">{{ form.password2.label }}</label>
+                        {{ form.password2 }}
+                    </div>
+                    <input type="submit" class="submit-btn" value="Sign Up"><br>
+                    <p>Already an user? <a href="{% url 'login' %}">Login</a></p>
+                </form>
+            </div>
+        </div>
+</div>
+</body>
+</html>
+

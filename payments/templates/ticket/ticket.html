@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@0,400;0,500;&display=swap');
+        body h1{
+            letter-spacing: 1.5px;
+            font-size: 2rem;
+            color: #183b56;
+            padding: 15px 30px;
+            text-align: center;
+        }
+
+        body p{
+            text-align: left;
+            letter-spacing: 0.75px;
+            font-size: 1rem;
+            color: #577592;
+            margin: 10px 0px;
+        }
+
+        .booking-detail{
+            width: 70%;
+        }
+
+        .booking-detail p{
+            margin-left: 70px;
+        }
+    </style>
+    <title>Booking Pdf</title>
+</head>
+<body style="display: flex; justify-content: center; flex-direction: column; align-items: center; text-align: left; font-family: 'Poppins',sans-serif;">
+    {% if booking_type == 'hotel' %}
+    <div class="booking-detail">
+    <h1>Tourify - Hotel Booking Payment</h1><hr><br>
+    <p><b>Booking ID</b> : {{ booking_id }}</p>
+    <p><b>Booking Date</b> : {{ booking_date }}</p>
+    <p><b>Booking Name</b> : {{ booking_name }}</p>
+    <p><b>Hotel</b> : {{ hotel_name }}</p>
+    <p><b>City</b> : {{ hotel_city }}</p>
+    <p><b>No of Rooms</b> : {{ no_rooms }}</p>
+    <p><b>Check In</b> : {{ check_in }}</p>
+    <p><b>Check Out</b> : {{ check_out }}</p>
+    <p><b>Payment ID</b> : {{ payment_id }}</p>
+    <p><b>Payment Amount</b>: {{ payment_amount }} {{ amount_currency }}</p>
+    <p><b>Payment Status</b> : Completed</p><br><br><hr>
+    </div>
+    
+    {% else %}
+    <div class="booking-detail">
+    <h1>Tourify - Flight Booking Payment</h1><hr><br>
+    <p><b>Booking ID</b> : {{ booking_id }}</p>
+    <p><b>Booking Date</b> : {{ booking_date }}</p>
+    <p><b>Booking Name</b> : {{ booking_name }}</p>
+    <p><b>Flight Carrier Code</b> : {{ flight_carrierCode }}</p>
+    <p><b>No of Adults</b> : {{ no_adults }}</p>
+    <p><b>Departure</b> : {{ departure_location }} - {{ departure_date }}</p>
+    <p><b>Arrival</b> : {{ arrival_location }} - {{ arrival_date }}</p>
+    <p><b>Payment ID</b> : {{ payment_id }}</p>
+    <p><b>Payment Amount</b> : {{ payment_amount }} {{ amount_currency }}</p>
+    <p><b>Payment Status</b> : Completed</p>
+    {% for passenger in passenger_names %}
+        <p><b>Adult {{ forloop.counter }} Name</b> : {{ passenger }}</p>
+    {% endfor %}
+    <br><br><hr>
+    </div>
+
+    {% endif %}
+
+</body>
+</html>

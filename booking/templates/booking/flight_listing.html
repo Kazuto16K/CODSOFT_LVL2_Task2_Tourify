@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static "css/flight_listing.css" %}">
+    <title>Flight Listing</title>
+</head>
+<body>
+    <header style="box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+        <a href="{% url 'home' %}" class="logo">
+            <img id="logoimg" src="{% static "assets/tourify-logo.png" %}" alt="">
+        </a>
+        <div class="menu">
+            <div class="btn">
+                <i class="fa fa-times close-btn"></i>
+            </div>
+            
+
+            <a href="{% url 'home' %}">Home</a>
+            <a href="#">Hotels</a>
+            <a href="#">Flights</a>
+            <a href="{% url 'logout' %}" class="primary-btn">LOGOUT  <i class="fa-solid fa-right-from-bracket"></i></a>
+            <a href="{% url 'get_profile' user %}" class="secondary-btn"><i class="fa-regular fa-user"></i> Profile</a>
+
+            
+        </div>
+        <div class="btn">
+            <i class="fa-solid fa-bars menu-btn" ></i>
+        </div>
+        
+    </header>
+    <div class="container">
+        <div class="list-container">
+            <div class="left-col">
+                <p>200+ Options</p>
+                <h1>Recommened Flights</h1>
+                {% for flight, data in response %}
+                        <a href="{% url 'flight_detail' %}?flight_id={{ flight.id }}" style="text-decoration: none; color: inherit;">
+                        <div class="flight">
+                            {% for itinerary in flight.itineraries %}
+                            {% for segment in itinerary.segments %}
+                            <div class="flight-info">
+                                <i class="fa-solid fa-plane"></i>
+                                <div class="start-loc">
+                                    <h3>{{ segment.departure.at|slice:"11:16" }}</h3>
+                                    <p>{{ segment.departure.iataCode }} - {{ segment.departure.at|slice:"5:10" }}</p>
+                                </div>
+                                <div class="line">{{ segment.duration|slice:"2:" }}<hr> Direct </div>
+                                <div class="dest-loc">
+                                    <h3>{{ segment.arrival.at|slice:"11:16" }}</h3>
+                                    <p>{{ segment.arrival.iataCode }} - {{ segment.departure.at|slice:"5:10" }}</p>
+                                </div>
+                                
+                                
+                                <div class="flight-price">
+                                    <!--{% if forloop.parentloop.counter == 2 %}
+                                    <h4 style="text-transform: uppercase; color: brown;" class="carrier-code">{{ segment.carrierCode }}</h4>
+                                    {% else %}-->
+                                    {% if forloop.counter == 1 %}
+                                    <h4 style="text-transform: uppercase;" class="price" >{{ flight.price }} EUR </h4>
+                                    {% endif %}
+                                    <!--{% endif %}-->
+                                </div>
+                                
+
+                            </div>
+                            {% endfor %} 
+                            {% endfor %} 
+                        </div>
+                    </a>
+                    {% endfor %}  
+            </div>
+            <div class="right-col">
+                <div class="sidebar">
+                    <h2>Select Filters</h2><br>
+                    <h3>Price Range</h3>
+                    <div class="price-input">
+                        <div class="field">
+                            <span>Min</span>
+                            <input type="number" class="input-min" value="0">
+                        </div><br>
+                        <div class="field">
+                            <span>Max</span>
+                            <input type="number" class="input-max" value="5000">
+                        </div><br>
+                        <button class="primary-btn" style="border: none; cursor: pointer;"> Filter </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       
+    </div>
+    <div class="sub-footer">
+        <div class="flex subfooter-container">
+            <a href="#" class="hover-links">Privacy policy</a>
+            <a href="#" class="hover-links">Terms & Conditions</a>
+            <a href="#" class="hover-links">Security Information</a>
+            <a href="#" class="hover-links"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="hover-links"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("scroll", function(){
+            var header = document.querySelector("header");
+            header.classList.toggle('sticky', window.scrollY>0)
+        });
+
+        var menu = document.querySelector('.menu');
+        var menuBtn = document.querySelector('.menu-btn');
+        var closeBtn = document.querySelector('.close-btn');
+
+        menuBtn.addEventListener("click",()=>{
+            menu.classList.add('active');
+        });
+
+        closeBtn.addEventListener("click", ()=>{
+            menu.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
+    
+

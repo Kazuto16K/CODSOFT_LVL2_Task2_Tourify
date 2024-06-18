@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static "css/details.css" %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <title>Hotel Detail</title>
+</head>
+<body>
+    <header style="box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+        <a href="#" class="logo">
+            <img id="logoimg" src="{% static "assets/tourify-logo.png" %}" alt="">
+        </a>
+        <div class="menu">
+            <div class="btn">
+                <i class="fa fa-times close-btn"></i>
+            </div>
+            
+
+            <a href="{% url 'home' %}">Home</a>
+            <a href="#">Hotels</a>
+            <a href="#">Flights</a>
+            <a href="{% url 'logout' %}" class="primary-btn">LOGOUT <i class="fa-solid fa-right-to-bracket"></i></a>
+            <a href="{% url 'get_profile' user %}" class="secondary-btn"><i class="fa-regular fa-user"></i> Profile</a>
+
+        </div>
+        <div class="btn">
+            <i class="fa-solid fa-bars menu-btn" ></i>
+        </div>
+    </header>
+
+    <div class="container" style="margin-top: 15vh;">
+ 
+        <div class="gallery ">
+         <div class="box" id="box-1" style="background-image: url({% static "./assets/interior1.jpg" %});"></div>
+         <div class="box" id="box-2" style="background-image: url({% static "./assets/interior2.jpg" %});"></div>
+         <div class="box" id="box-3" style="background-image: url({% static "./assets/interior3.jpg" %});"></div>
+        </div>
+     </div>
+
+     <div class="details-container">
+        <div class="details-section">
+            <h2>{{ offer.hotel_name }} - {{ offer.cityCode }}</h2>
+            <p><b>Accomodation</b> : Available</p>
+            <p><b>Stay Duration</b> : {{ offer.checkin|slice:"5:10" }} to {{ offer.checkout|slice:"5:10" }}</p>
+            <p><b>Amenities</b> : {{ offer.desc }}</p>
+            <p><b>Room type</b> : {{ offer.boardType }}</p>
+            <p><b>No of Rooms</b> : {{ offer.no_rooms }}</p>
+            <p><b>Cancellation Policy</b> : {{ offer.policy }}</p>
+            <p><b>Payment Type</b> : {{ offer.deposit }}</p>
+            <p><b>Username : </b>{{ offer.username }}</p>
+        </div>
+        <div class="price-section">
+            <h2>Total Amount</h2>
+            <div style="margin-top: auto;">
+            <p><b>Price of Rooms/day</b> : {{ offer.price_avg_base }}</p> <!-- get from price.variation.average.base  -->
+            <p><b>No of Accomodation Days</b> : {{ offer.no_of_days }} </p> 
+            <p><b>Total Price</b> : {{ offer.price_base }}</p>    <!-- get from price.base  -->
+            <p><b>Tax Amount</b> : {{ offer.price_percentage }}</p>
+            <p><b>Total Amount</b> : {{ offer.price_total }} {{ offer.price_currency }}</p>   <!-- get from price.total  -->
+            <form action="{% url 'confirm_booking' %}" method="post">
+                {% csrf_token %}
+                <input type="text" style="display: none;" value="{{ offer.username }}" id="user_name" name="user_name">
+                <input type="text" style="display: none;" value="{{ offer.price_total }}" id="hotel-price" name="hotel-price">
+                <input type="text" style="display: none;" value="{{ offer.hotel_name }}" id="hotel-name" name="hotel-name">
+                <input type="text" style="display: none;" value="{{ offer.cityCode }}" id="hotel-city" name="hotel-city">
+                <input type="text" style="display: none;" value="{{ offer.no_rooms }}" id="hotel-no-rooms" name="hotel-no-rooms">
+                <input type="text" style="display: none;" value="{{ offer.hotel_id }}" id="hotel-id" name="hotel-id">
+                <input type="text" style="display: none;" value="{{ offer.checkin }}" id="check-in" name="check-in">
+                <input type="text" style="display: none;" value="{{ offer.checkout }}" id="check-out" name="check-out">
+                <input type="text" style="display: none;" value="{{ offer.price_currency }}" id="currency" name="currency">
+                <input type="submit" value="Confirm Booking" class="primary-btn" name="hotel-submit">
+            </form>
+            </div>
+        </div>
+     </div>
+     <div class="map-container">
+     <div class="map" id="map"></div>
+    </div>
+    
+
+    <script>
+        window.addEventListener("scroll", function(){
+            var header = document.querySelector("header");
+            header.classList.toggle('sticky', window.scrollY>0)
+        });
+
+        var menu = document.querySelector('.menu');
+        var menuBtn = document.querySelector('.menu-btn');
+        var closeBtn = document.querySelector('.close-btn');
+
+        menuBtn.addEventListener("click",()=>{
+            menu.classList.add('active');
+        });
+
+        closeBtn.addEventListener("click", ()=>{
+            menu.classList.remove('active');
+        });
+    </script>
+    
+    <script defer>
+       var map = L.map('map').setView([{{ offer.latitude }}, {{ offer.longitude }}], 14);
+       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        var marker = L.marker([{{ offer.latitude }}, {{ offer.longitude }}]).addTo(map);
+    </script>
+</body>
+</html>

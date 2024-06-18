@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@0,400;0,500;&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.container .img-box {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    
+}
+
+
+.container .img-box:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.5) 70%);
+    z-index: 1;
+}
+
+.container .img-box img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.container .form-box{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form .tourify-logo{
+    justify-content: center;
+    text-align: center;
+    padding: 20px 20px;
+    margin-bottom: 3vh;
+}
+
+.login-form .tourify-logo img{
+    width: 270px;
+    height: 90px;
+    
+}
+
+.container .form-box .login-form, .register-form{
+    width: 50%;
+}
+
+.container .form-box .login-form h2{
+    color: #607d8b;
+    font-weight: 550;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+    border-bottom: 3px #607d8b;
+}
+
+.login-form input{
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    border-radius: 30px;
+    background: transparent;
+}
+
+.login-form .form-label{
+    margin-left: 10px;
+    color: #607d8b;
+    font-size: 14px;
+}
+
+.login-form .submit-btn{
+    background: #222 !important;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 25px;
+}
+
+.login-form .submit-btn:hover{
+    background: #504e4e !important;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 25px;
+    transition: 0.5s ease-out;
+    
+}
+
+.login-form p{
+    color: #607d8b;
+}
+
+.login-form p a{
+    margin-top: 10px;
+    text-decoration: none;
+    color: #349dff;
+    transition: 0.5s ease-out;
+}
+.login-form p a:hover{
+    text-decoration: none;
+    color: #336594;
+}
+
+/* Register form  css */
+
+.container .form-box .register-form h2{
+    color: #607d8b;
+    font-weight: 550;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+    border-bottom: 3px #607d8b;
+}
+
+.register-form input{
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    border-radius: 30px;
+    background: transparent;
+}
+
+.register-form .form-label{
+    margin-left: 10px;
+    color: #607d8b;
+    font-size: 14px;
+}
+
+.register-form .submit-btn{
+    background: #222 !important;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 25px;
+}
+
+.register-form .submit-btn:hover{
+    background: #504e4e !important;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 25px;
+    transition: 0.5s ease-out;
+    
+}
+
+.register-form p{
+    color: #607d8b;
+}
+
+.register-form p a{
+    margin-top: 10px;
+    text-decoration: none;
+    color: #349dff;
+    transition: 0.5s ease-out;
+}
+.register-form p a:hover{
+    text-decoration: none;
+    color: #336594;
+}
+
+
+/* Register form css end*/
+
+@media (max-width: 768px){
+    .container .img-box{
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .container .form-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .container .form-box .login-form{
+        width: 100%;
+        padding: 40px;
+        background: rgba(255,255,255, 0.9);
+        margin: 50px;
+        border-radius: 10px;
+    }
+
+    .container .form-box .register-form{
+        width: 100%;
+        padding: 40px;
+        background: rgba(255,255,255, 0.9);
+        margin: 50px;
+        border-radius: 10px;
+    }
+}
+

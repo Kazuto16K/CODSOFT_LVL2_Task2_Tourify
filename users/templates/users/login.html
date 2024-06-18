@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    
+    <div class="container flex">
+        
+        <div class="img-box">
+            <img src="{% static 'images/flight3.jpg' %}" alt="">
+        </div>
+        <div class="form-box">
+            <div class="login-form">
+                <div class="tourify-logo">
+                    <a href="{% url 'base' %}"><img src="{% static 'images/tourify-logo.png' %}" alt=""></a>
+                </div>
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }} </label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }} </label>
+                        {{ form.password }}
+                    </div>
+                
+                    <input type="submit" class="submit-btn" value="Login">
+                    <p>Don't have an account?<a href="{% url 'register' %}"> Signup</a></p><br>
+                    <p><a href="{% url 'password_reset' %}">Forgot password? Click here</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@0,400;0,500;&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-text-color: #183b56;
+    --secondary-text-color: #577592;
+    --accent-color: #2294ed;
+    --accent-color-dark: #1d69a3;
+    --padding-inline-section: 10px;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+
+/* Navbar start */
+
+header{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 80px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.3s;
+}
+
+.logo img{
+    width: 200px;
+}
+
+header .menu{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+header .menu a{
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 0 30px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    transition: 0.3s ease-out;
+    font-weight: 500;
+}
+
+header .menu a:hover{
+    color: var(--accent-color-dark);
+}
+
+header .btn{
+    color: #222;
+    font-size: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+header.sticky{
+    background: #222;
+    padding: 10px 80px;
+    
+}
+
+header.sticky a{
+    color: white;
+}
+
+header.sticky a.logo img {
+    
+    background-color: white;
+    border-radius: 10px;
+}
+
+header.sticky a.secondary-btn{
+    color: white;
+    border-color: white;
+    transition: 0.3s ease-out;
+}
+
+header.sticky a.secondary-btn:hover{
+    color: rgb(178, 210, 219);
+    border-color: rgb(178, 210, 219);
+}
+
+header.sticky .menu-btn{
+    color: white;
+    
+}
+
+/*Navbar end*/
+
+/*Buttons start*/
+.primary-btn{
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    font-weight: 600;
+    color: white !important;
+    padding: 12px 24px !important;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.3s ease-out;
+}
+
+.primary-btn:hover{
+    background-color: var(--secondary-text-color) !important;
+}
+
+.secondary-btn{
+    border:  0.5px solid var(--secondary-text-color);
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--primary-text-color) ;
+    padding: 12px 24px !important;
+    transition: 0.3s ease-out;
+}
+
+.secondary-btn:hover{
+    border-color: var(--accent-color);
+    color: var(--secondary-text-color);
+}
+
+/*Buttons ends*/
+
+/*BODY STARTS*/
+
+.container{
+    padding: 0 7%;
+    margin-top: 20vh;
+}
+
+.list-container{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.left-col{
+    flex-basis: 70%;
+}
+
+.right-col{
+    flex-basis: 25%;
+}
+
+.left-col h1{
+    color: #183b56;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.hotel{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 30px 10px;
+    border-top: 1px solid #ccc;
+    transition: 0.5s ease-out;
+}
+
+.hotel:hover{
+    background-color: rgba(0,0,0,0.07);
+}
+
+.hotel .hotel-img{
+    flex-basis:40%;
+}
+
+.hotel .hotel-info{
+    flex-basis: 58%;
+    color: #555;
+}
+
+.hotel-img img{
+    width: 100%;
+    border-radius: 12px;
+}
+
+.hotel-info h3{
+    font-weight: 600;
+    color: #183b56;
+    font-size: 22px;
+    margin: 4px;
+}
+
+.hotel-info p{
+    margin: 5px;
+}
+
+.hotel-price{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+}
+
+.hotel-price h4{
+    font-size: 20px;
+}
+
+.sidebar{
+    border: 1px solid #999;
+    padding: 30px 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.sidebar h2{
+    font-weight: 500;
+    color: #183b56;
+}
+
+.sidebar h3{
+    font-weight: 400;
+    padding: 10px;
+    color: #183b56;
+}
+
+.input-min, .input-max{
+    padding: 6px 8px;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+
+.field span{
+    color: #183b56;
+    text-transform: uppercase;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+
+/*BODY ENDS*/
+
+/*Footer Start */
+
+.sub-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b9cdef;
+    padding: var(--padding-inline-section);
+    color: var(--primary-text-color);
+}
+
+
+.subfooter-container{
+    justify-content: space-between;
+    gap:30px;
+}
+
+.subfooter-container a{
+    text-decoration: none;
+    color: #183b56;
+}
+
+/* Footer End */
+
+/*Media section - Responsive */
+@media (max-width: 1060px){
+    header .btn{
+        display: block;
+        color: #222;
+        
+    }
+
+    header .menu{
+        position: fixed;
+        background: white;
+        flex-direction: column;
+        min-width: 400px;
+        height: 100vh;
+        top: 0;
+        right: -100%;
+        padding: 80px 50px;
+        transition: 0.5s ease-out;
+    }
+    
+
+    header .menu.active{
+        right: 0;
+    }
+
+    header .menu .close-btn{
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 25px;
+    }
+
+    header .menu a{
+        display: block;
+        color: var(--primary-text-color) ;
+        font-size: 20px;
+        margin: 20px;
+        padding: 0 15px;
+    }
+
+    header .menu a.secondary-btn{
+        color: var(--primary-text-color) !important;
+        border-color: var(--primary-text-color);
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .container{
+        margin-top: 10vh;
+    }
+
+    .list-container{
+        flex-direction: column-reverse;
+    }
+
+    .left-col, .right-col, .hotel-img, .hotel-info{
+        flex-basis: 100%;
+    }
+
+    .right-col{
+        margin-bottom: 3vh;
+    }
+
+    .left-col h1{
+        font-size: 22px;
+    }
+
+    .hotel-info h3{
+        font-size: 18px;
+    }
+
+    .subfooter-container a{
+        font-size: 10px;
+    }
+}

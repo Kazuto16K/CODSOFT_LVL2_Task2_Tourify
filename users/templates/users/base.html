@@ -1,0 +1,201 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <title>Tourify</title>
+</head>
+<body>
+    <header style="box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+        <a href="#" class="logo">
+            <img id="logoimg" src="{% static 'images/assets/tourify-logo.png' %}" alt="">
+        </a>
+        <div class="menu">
+            <div class="btn">
+                <i class="fa fa-times close-btn"></i>
+            </div>
+            
+
+            <a href="#">Home</a>
+            <a href="#hotels">Hotels</a>
+            <a href="#flights">Flights</a>
+            <a href="{% url 'login' %}" class="primary-btn">Login</a>
+            <a href="{% url 'register' %}" class="secondary-btn">Sign Up</a>
+
+            
+        </div>
+        <div class="btn">
+            <i class="fa-solid fa-bars menu-btn" ></i>
+        </div>
+        
+    </header>
+
+    <div class="container" style="margin-top: 15vh;">
+       <div class="left-text">
+        <h2 class="heading ">TOURIFY</h2>
+        <p class="subheading ">Discover the world with Tourify, your ultimate travel companion for seamless flight and hotel bookings. Enjoy competitive prices, curated recommendations, and a user-friendly platform that makes travel planning effortless. Let Tourify turn your travel dreams into reality.
+            <br><br><br><a href="{% url 'login' %}" class="secondary-btn" style="text-decoration: none;">Get Started <i class="fa-solid fa-right-long"></i> </a></p>
+       </div>
+
+       <div class="gallery ">
+        <div class="box col-2" id="box-1" style="background-image: url('{% static "images/assets/canada2.jpg" %}');">C A N A D A</div>
+        <div class="box row-2" id="box-2" style="background-image: url('{% static "images/assets/singapore1.jpg" %}');">S I N G A P O R E</div>
+        <div class="box row-2" id="box-3" style="background-image: url('{% static "images/assets/japan1.jpg" %}');">J A P A N</div>
+        <div class="box " id="box-4" style="background-image: url('{% static "images/assets/thailand1.jpg" %}');">T H A I L A N D</div>
+        <div class="box row-2" id="box-5" style="background-image: url('{% static "images/assets/usa1.jpg" %}');">U S A</div>
+        <div class="box " id="box-6" style="background-image: url('{% static "images/assets/italy1.jpg" %}');"> I T A L Y</div>
+        <div class="box" id="box-7" style="background-image: url('{% static "images/assets/portugal1.jpg" %}');">P O R T U G A L</div>
+        <div class="box " id="box-8" style="background-image: url('{% static "images/assets/spain1.jpg" %}');">S P A I N</div>
+       </div>
+    </div>
+
+    <section class="big-feature-section">
+        <div class="image-container flex big-feature-container ">
+            <div class="swiper" style="flex-basis:40%">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  
+                  <div class="swiper-slide"><div class="gradient"></div><img src="{% static 'images/assets/canada1.jpg' %}"></div>
+                  <div class="swiper-slide"><div class="gradient"></div><img src="{% static 'images/assets/uk2.jpg' %}"></div>
+                  <div class="swiper-slide"><div class="gradient"></div><img src="{% static 'images/assets/spain1.jpg' %}"></div>
+                  <div class="swiper-slide"><div class="gradient"></div><img src="{% static 'images/assets/japan1.jpg' %}"></div>
+                  <div class="swiper-slide"><div class="gradient"></div><img src="{% static 'images/assets/italy2.jpg' %}"></div>
+                
+                  
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+              
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev" style="color: white;"></div>
+                <div class="swiper-button-next" style="color: white;"></div>
+              
+              </div>
+    
+            <div class="feature-desc flex" style="flex-basis:60%">
+                <h2 style="color: #183b56;">Travel Places Easily <i class="fa-solid fa-plane"></i></h2>
+                <br>
+                <p style="color: #577592;">Traveling to new places opens up a world of adventure and discovery. Experience diverse cultures, breathtaking landscapes, and unique cuisines as you explore destinations near and far. Make every journey memorable with unforgettable experiences and stories to share.</p>
+                <br><a href="{% url 'login' %}" class="secondary-btn" style="text-decoration: none;">BOOK NOW <i class="fa-solid fa-right-long"></i> </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="big-feature-section" id="flights">
+        <div class="image-container flex big-feature-container " style="flex-direction: row-reverse;">
+            <div class="feature-img">
+                <img src="{% static 'images/assets/flight1.jpg' %}" alt="">
+            </div>
+            <div class="feature-desc flex">
+                <h2 style="color: #183b56;">Book Flights Easily <i class="fa-solid fa-plane-circle-check"></i></h2>
+                <br>
+                <p>Book flights easily and seamlessly with our user-friendly platform. Find the best deals, compare prices, and secure your tickets in just a few clicks. Experience hassle-free travel planning from start to finish.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="big-feature-section" id="hotels">
+        <div class="image-container flex big-feature-container" style="flex-direction: row;">
+            <div class="feature-img">
+                <img src="{% static 'images/assets/hotel2.jpg' %}" alt="">
+            </div>
+            <div class="feature-desc flex ">
+                <h2 style="color: #183b56;">Book Hotels Easily <i class="fa-solid fa-hotel"></i></h2>
+                <br>
+                <p>Book hotels effortlessly with our intuitive platform. Discover the best deals, compare amenities, and reserve your perfect stay in just a few clicks. Enjoy a smooth and hassle-free booking experience every time.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cta-section">
+        <div class="flex cta-section-container">
+            <h2 class="cta-header">Start booking today</h2><br>
+            <p>Make an account at Tourify easily following the simple steps.</p><br>
+            <a href="{% url 'login' %}" class="primary-btn" style="text-decoration: none;">Get Started</a>
+        </div>
+    </section>
+
+    <div class="sub-footer">
+        <div class="flex subfooter-container">
+            <a href="#" class="hover-links">Privacy policy</a>
+            <a href="#" class="hover-links">Terms & Conditions</a>
+            <a href="#" class="hover-links">Security Information</a>
+            <a href="#" class="hover-links"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="hover-links"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("scroll", function(){
+            var header = document.querySelector("header");
+            header.classList.toggle('sticky', window.scrollY>0)
+        });
+
+        var menu = document.querySelector('.menu');
+        var menuBtn = document.querySelector('.menu-btn');
+        var closeBtn = document.querySelector('.close-btn');
+
+        menuBtn.addEventListener("click",()=>{
+            menu.classList.add('active');
+        });
+
+        closeBtn.addEventListener("click", ()=>{
+            menu.classList.remove('active');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    const swiper = new Swiper('.swiper', {
+        loop: true,
+        autoplay:{
+            delay: 3000,
+            disableOnInteraction:false
+        },
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      
+        
+      });
+      </script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const scrollLinks = document.querySelectorAll('.scroll-link');
+
+        scrollLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1); 
+                const targetElement = document.getElementById(targetId); 
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+});
+      </script>
+
+</body>
+</html>

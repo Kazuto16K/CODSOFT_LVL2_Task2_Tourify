@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@0,400;0,500;&display=swap');
+        body h1{
+            letter-spacing: 1.5px;
+            font-size: 2rem;
+            color: #183b56;
+            padding: 15px 30px;
+        }
+
+        body p{
+            text-align: left;
+            letter-spacing: 0.75px;
+            font-size: 1rem;
+            color: #577592;
+        }
+
+        body form .paypal-btn{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 4vh 2vw;
+            padding: 20px 20px;
+            background-color: gold;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            transition: 0.4s ease-out;
+        }
+
+        body form .paypal-btn:hover{
+            background-color: goldenrod;
+            cursor: pointer;
+        }
+
+        .paypal-btn i{
+            padding: 3px;
+            color: #0070BA;
+        }
+    </style>
+    <title>PayPal Payment</title>
+</head>
+<body style="display: flex; justify-content: center; flex-direction: column; align-items: center; text-align: left; font-family: 'Poppins',sans-serif;">
+    {% if booking_type == 'hotel' %}
+    <div class="booking-detail">
+    <h1>Hotel Booking Payment</h1>
+    <p><b>Booking Name</b> : {{ booking.user.username }}</p>
+    <p><b>Hotel</b> : {{ booking.hotel_name }}</p>
+    <p><b>Total Amount</b>: {{ booking.total_amount }} {{ booking.amount_currency }}</p>
+    <p><b>City</b> : {{ booking.hotel_city }}</p>
+    <p><b>No of Rooms</b> : {{ booking.no_rooms }}</p>
+    <p><b>Check In</b> : {{ booking.check_in }}</p>
+    <p><b>Check Out</b> : {{ booking.check_out }}</p>
+    </div>
+    
+    {% else %}
+    <div class="booking-detail">
+    <h1>Flight Booking Payment</h1>
+    <p><b>Booking Name</b> : {{ booking.user.username }}</p>
+    <p><b>Flight Carrier Code</b> : {{ booking.flight_carrierCode }}</p>
+    <p><b>No of Adults</b> : {{ booking.no_adults }}</p>
+    <p><b>Total Amount</b> : {{ booking.total_amount }} {{ booking.amount_currency }}</p>
+    <p><b>Departure</b> : {{ booking.departure_location }} - {{ booking.departure_date }}</p>
+    <p><b>Arrival</b> : {{ booking.arrival_location }} - {{ booking.arrival_date }}</p>
+    </div>
+
+    {% endif %}
+
+    <form method="post" action="{% url 'payments:process_payment' booking.booking_id %}">
+        {% csrf_token %}
+        <button type="submit" class="paypal-btn">Pay with PayPal <i class="fa-brands fa-paypal"></i></button>
+    </form>
+
+</body>
+</html>

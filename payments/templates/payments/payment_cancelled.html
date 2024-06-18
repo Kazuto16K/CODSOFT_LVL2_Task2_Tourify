@@ -1,0 +1,10 @@
+<h2>Payment Cancelled</h2>
+<div class="redirect-msg" style="padding: 10px;">
+    <h3>Redirecting to home ...</h3>
+</div>
+
+<script>
+    setTimeout(function(){
+        window.location.href="{% url 'home' %}";
+    }, 3000);
+</script>

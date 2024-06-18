@@ -1,0 +1,272 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="https://kit.fontawesome.com/4b7f643936.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.22.0/autocomplete.jquery.min.js"></script>
+    <style>
+        .background{filter: blur(4px);}
+
+        .pop-up-container{
+            position: fixed;
+            width: 30vw;
+            height: 50%;
+            top: 20vh;
+            left: 35vw;
+            right: 35vw;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow:0 0 20px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; 
+            border-top: 8px solid #222;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        .welcome-text{
+            margin-top: 10vh;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media(max-width: 767px){
+            .pop-up-container{
+                width: 60vw;
+                left: 20vw;
+                
+            }
+            .loader{
+                width :90px;
+                height: 90px;
+            }
+
+            .welcome-text{
+                font-size: 1.2rem;
+                padding: 5px 10px;
+            }
+
+        }
+    </style>
+    <title>Tourify - Home</title>
+</head>
+<body>
+    <div class="pop-up-container">
+        <div class="loader"></div>
+        <div class="welcome-text"><b>welcome to tourify</b> <br>{{ User }}! &#129303;</div>
+    </div>
+    <div class="background">
+    <header style="box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); display:none">
+        <a href="#" class="logo">
+            <img id="logoimg" src="{% static 'assets/tourify-logo.png' %}" alt="">
+        </a>
+        <div class="menu">
+            <div class="btn">
+                <i class="fa fa-times close-btn"></i>
+            </div>
+            <a href="#">Home</a>
+            <a href="#hotels">Hotels</a>
+            <a href="#flights">Flights</a>
+            <a href="{% url 'logout' %}" class="primary-btn">Logout  <i class="fa-solid fa-right-from-bracket"></i></a>
+            <a href="{% url 'get_profile' User %}" class="secondary-btn"><i class="fa-regular fa-user"></i> Profile</a>
+
+            
+        </div>
+        <div class="btn">
+            <i class="fa-solid fa-bars menu-btn" ></i>
+        </div>
+    </header>
+
+    <section class="header-section">
+        <div class="container">
+            <div class="image-container">
+                <div class="gradient"></div>
+                <img src="{% static 'assets/thailand2.jpg' %}" alt="">
+                <h1 class="overlay-text" style="color: white;">Enjoy Your Dream Vacation</h1><br>
+                <p class="overlay-text-para">Book Flights, Book Hotels and plan the vacation easily using Tourify</p>
+                <div class="overlay-btn">
+                <div class="overlay-buttons"><a href="#flights" class="secondary-btn btn1">Book Flight</a></div>
+                <div class="overlay-buttons"><a href="#hotels" class="secondary-btn btn2">Book Hotel</a></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flight-booking" id="flights">
+        <div class="container">
+            <div class="text-section">
+                <h1>Book Flights <i class="fa-solid fa-plane-circle-check"></i></h1>
+                <p>Book your dream vacation in just a few clicks! Effortlessly find the best flights with Tourify</p>
+            </div>
+
+            <div class="image-container">
+                <div class="gradient-2"></div>
+                <img src="{% static 'assets/flight5.jpg' %}" alt="">
+                <div class="form-overlay">
+                    <form method="post" action="{% url 'flight_search' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="field">
+                            <label for="Origin">Origin</label>
+                            <input type="text" id="Origin" name="Origin" placeholder="Origin">
+                            </div>
+                        
+                            <div class="field">
+                            <label for="Destination">Destination</label>
+                            <input type="text" id="Destination" name="Destination" placeholder="Destination">
+                            </div>
+                        
+                            
+                        </div>
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="Destination">People/Adults</label>
+                                <input type="number" id="People" name="People" placeholder="Adults">
+                            </div>
+                            <div class="field">
+                            <label for="Departuredate">Departure Date</label>
+                            <input type="date" id="Departuredate" name="Departuredate" placeholder="Departure date">
+                            </div>
+                        
+                        </div>
+                        <div class="form-row full-width">
+                            <button type="submit" class="primary-btn">Search Flights <i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hotel-booking" id="hotels">
+        <div class="container">
+            <div class="text-section">
+                <h1>Book Hotels <i class="fa-solid fa-hotel"></i></h1>
+                <p>Book your dream vacation in just a few clicks! Effortlessly find the best hotels with Tourify</p>
+            </div>
+
+            <div class="image-container">
+                <div class="gradient-2"></div>
+                <img src="{% static 'assets/hotel2.jpg' %}" alt="">
+                <div class="form-overlay">
+                    <form method="post" id="hotel_form" name="hotel_form" action="{% url 'hotel_search' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="field">
+                            <label for="Location">Location</label>
+                            <input type="text" id="Location" name="Location" placeholder="Location">
+                            </div>
+                            
+                            <div class="field">
+                            <label for="Rooms">No of Rooms</label>
+                            <input type="number" id="Rooms" name="Rooms" placeholder="Rooms">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="field">
+                            <label for="Checkin">Check-In</label>
+                            <input type="date" id="Checkin" name="Checkin" placeholder="Check-In">
+                            </div>
+                        
+                            <div class="field">
+                            <label for="Checkout">Check-Out</label>
+                            <input type="date" id="Checkout" name="Checkout" placeholder="Check-out">
+                            </div>
+                        </div>
+                        <div class="form-row full-width">
+                            <button type="submit" class="primary-btn">Search Hotels <i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sub-footer">
+        <div class="flex subfooter-container">
+            <a href="#" class="hover-links">Privacy policy</a>
+            <a href="#" class="hover-links">Terms & Conditions</a>
+            <a href="#" class="hover-links">Security Information</a>
+            <a href="#" class="hover-links"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="hover-links"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
+    </div>
+    <script>
+        window.addEventListener("scroll", function(){
+            var header = document.querySelector("header");
+            header.classList.toggle('sticky', window.scrollY>0)
+        });
+
+        var menu = document.querySelector('.menu');
+        var menuBtn = document.querySelector('.menu-btn');
+        var closeBtn = document.querySelector('.close-btn');
+
+        menuBtn.addEventListener("click",()=>{
+            menu.classList.add('active');
+        });
+
+        closeBtn.addEventListener("click", ()=>{
+            menu.classList.remove('active');
+        });
+    </script>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const scrollLinks = document.querySelectorAll('.scroll-link');
+
+            scrollLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1); 
+                    const targetElement = document.getElementById(targetId); 
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        setTimeout(function() {
+            var elements = document.getElementsByClassName('pop-up-container');
+            var page = document.getElementsByClassName('background');
+            var header = document.querySelector('header');
+            if (elements.length > 0) {
+                elements[0].style.display = 'none';
+                page[0].style.filter = 'none';
+                header.style.display = 'flex';
+            } else {
+                console.error('No elements found with class pop-up-container');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
