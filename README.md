@@ -3,4 +3,4 @@ This is a fully working Travel booking website(Tourify) that is made using Djang
 
 **The Secret Keys and Client ID and Email Password for Mailtrap are kept hidden for security**
 
-https://github.com/Kazuto16K/CODSOFT_LVL2_Task2_Tourify/issues/1#issue-2358993868
+
